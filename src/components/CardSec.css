@@ -1,0 +1,9 @@
+.Card {
+    color: #0E0030;
+    transition: 0.1s ease-in-out;
+}
+.Card:hover {
+    background-color: #6A2CF9;
+    color: white;
+    transition: 0.1s ease-in-out;
+}
