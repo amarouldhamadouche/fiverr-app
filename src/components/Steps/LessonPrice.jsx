@@ -9,7 +9,7 @@ function LessonPrice() {
             <h1 className="font-semibold text-start mb-3 ">
               what type of lessons do you want ?
             </h1>
-            <div className=" flex flex-row gap-4">
+            <div className=" flex flex-row gap-4 justify-center">
               <button className=" hover:bg-perprl hover:text-white transition ease-in-out h-auto w-40 py-4 rounded bg-VD font-semibold text-Darkblue">
                 Manual
               </button>
