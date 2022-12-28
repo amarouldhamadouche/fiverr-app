@@ -1,6 +1,12 @@
 import React from "react";
+import { useContext } from "react";
+import StepperContext from "../../context/StipperContext";
 
 function Gearbox() {
+  const { userData, setUserData } = useContext(StepperContext);
+   const handleChange = (type) => {
+    setUserData({ ...userData, typeOfLearning: type});
+  };
   return (
     <div className="mt-10 container">
       <div classNameName="   flex  justify-center items-center flex-col">
@@ -11,7 +17,8 @@ function Gearbox() {
           <div className=" flex gap-4 flex-col justify-center items-center">
             <a
               href="#"
-              className=" text-start block w-96 pl-4 pr-28 py-3   bg-VD  rounded-lg  transition ease-in-out    "
+               className={`${userData?.typeOfLearning == 0 ? "bg-perprl text-white " : " bg-VD " }  text-start block w-96 pl-4 pr-28 py-3 rounded-lg transition ease-in-out`}
+               onClick={()=>handleChange(0)}
             >
               <h5 className="mb-1 text-start font-medium  text-Darkblue   ">
                 i want to learn drive
@@ -20,7 +27,8 @@ function Gearbox() {
 
             <a
               href="#"
-              className=" text-start block w-96 pl-4 pr-28 py-3   bg-VD  rounded-lg  transition ease-in-out    "
+              className={`${userData?.typeOfLearning == 1 ? "bg-perprl text-white  " : " bg-VD "}  text-start block w-96 pl-4 pr-28 py-3 rounded-lg transition ease-in-out `} 
+              onClick={()=>handleChange(1)}
             >
               <h5 className="mb-1 text-start font-medium  text-Darkblue   ">
                 i want refresher learner
@@ -29,7 +37,8 @@ function Gearbox() {
 
             <a
               href="#"
-              className=" text-start block w-96  pl-4 pr-16 py-3    bg-VD  rounded-lg  transition ease-in-out    "
+              className={`${userData?.typeOfLearning == 2 ? "bg-perprl text-white" : " bg-VD " }  text-start block w-96 pl-4 pr-28 py-3 rounded-lg transition ease-in-out `}
+              onClick={()=>handleChange(2)}
             >
               <h5 className="mb-1 text-start font-medium  text-Darkblue   ">
                 i have a test booked within 14 days
