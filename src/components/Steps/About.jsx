@@ -1,8 +1,36 @@
 import React, { useState } from "react";
+import { useContext } from "react";
+import StepperContext from "../../context/StipperContext";
 
 function About() {
+  const { userData, setUserData } = useContext(StepperContext);
   const [radioValue, setRadioValue] = useState("yes");
   const [radioGiftValue, setRadioGiftValue] = useState("no");
+
+  const handleChangeDate = (type) => {
+    setUserData({ ...userData,About:{ ...userData.About,date:type}});
+  };
+  const handleChangeFirstName = (type) => {
+    setUserData({ ...userData,About:{...userData.About,first_name:type}});
+  };
+  const handleChangeSurname = (type) => {
+    setUserData({ ...userData,About:{ ...userData.About,surname:type}});
+  };
+  const handleChangeM_number = (type) => {
+    setUserData({ ...userData,About: {...userData.About,m_number:type}});
+  };
+  const handleChangeEmail = (type) => {
+    setUserData({ ...userData,About:{ ...userData.About,email:type}});
+  };
+  const handleChangeBirthday = (type) => {
+    setUserData({ ...userData,About:{ ...userData.About,birthday:type}});
+  };
+  const handleChangeAddress = (type) => {
+    setUserData({ ...userData,About:{ ...userData.About,address:type}});
+  };
+  const handleChangeBillingAddress = (type) => {
+    setUserData({ ...userData,About:{ ...userData.About,billingAddress:type}});
+  };
   return (
     <div>
       <div className=" flex-col flex items-center justify-center">
@@ -18,10 +46,10 @@ function About() {
                     <div className="md:col-span-5">
                       <p>Select date</p>
                       <div className="date-container">
-                        <div className="date">Mr.</div>
-                        <div className="date">Miss</div>
-                        <div className="date">Mrs</div>
-                        <div className="date">Ms</div>
+                        <div className={`${userData?.About?.date === "Mr" ? 'bg-perprl text-white' : 'bg-VD text-Darkblue'} date`} onClick={()=>handleChangeDate("Mr")}>Mr.</div>
+                        <div className={`${userData?.About?.date === "Miss" ? 'bg-perprl text-white' : 'bg-VD text-Darkblue'} date`} onClick={()=>handleChangeDate("Miss")}>Miss</div>
+                        <div className={`${userData?.About?.date === "Mrs" ? 'bg-perprl text-white' : 'bg-VD text-Darkblue'} date`} onClick={()=>handleChangeDate("Mrs")}>Mrs</div>
+                        <div className={`${userData?.About?.date === "Ms" ? 'bg-perprl text-white' : 'bg-VD text-Darkblue'} date`} onClick={()=>handleChangeDate("Ms")}>Ms</div>
                       </div>
                     </div>
 
@@ -32,7 +60,8 @@ function About() {
                         name="first_name"
                         id="first_name"
                         className="h-10  outline-none   mt-1 rounded px-4 w-full bg-VD"
-                        value="Anderson"
+                        value={userData?.About?.first_name}
+                        onChange={(e)=>handleChangeFirstName(e.target.value)}
                       />
                     </div>
 
@@ -44,6 +73,8 @@ function About() {
                         id="surename"
                         className="h-10  outline-none   mt-1 rounded px-4 w-full bg-VD"
                         placeholder="Enter surename"
+                        value={userData?.About?.surname}
+                        onChange={(e)=>handleChangeSurname(e.target.value)}
                       />
                     </div>
 
@@ -55,6 +86,8 @@ function About() {
                         id="m_number"
                         className="h-10  outline-none   mt-1 rounded px-4 w-full bg-VD"
                         placeholder="Enter mobile number"
+                        value={userData?.About?.m_number}
+                        onChange={(e)=>handleChangeM_number(e.target.value)}
                       />
                     </div>
 
@@ -65,8 +98,9 @@ function About() {
                         name="email"
                         id="email"
                         className="h-10  outline-none   mt-1 rounded px-4 w-full bg-VD"
-                        value=""
+                        value={userData?.About?.email}
                         placeholder="Enter email"
+                        onChange={(e)=>handleChangeEmail(e.target.value)}
                       />
                     </div>
 
@@ -78,6 +112,8 @@ function About() {
                         id="birth_day"
                         className="h-10  outline-none   mt-1 rounded px-4 w-full bg-VD"
                         placeholder="Enter date of birth (DD/MM/YYYY)"
+                        value={userData?.About?.birthday}
+                        onChange={(e)=>handleChangeBirthday(e.target.value)}
                       />
                     </div>
 
@@ -88,7 +124,8 @@ function About() {
                         name="adress"
                         id="adress"
                         className="h-10  outline-none   mt-1 rounded px-4 w-full "
-                        value=""
+                        value={userData?.About?.address}
+                        onChange={(e)=>handleChangeAddress(e.target.value)}
                         placeholder="Enter adress"
                       />
                     </div>
@@ -148,7 +185,8 @@ function About() {
                           name="billing_adress"
                           id="billing_adress"
                           className="h-10  outline-none   mt-1 rounded px-4 w-full "
-                          value=""
+                          value={userData?.About?.billingAddress}
+                          onChange={(e)=>handleChangeBillingAddress(e.target.value)}
                           placeholder="Enter billing adress"
                         />
                       </div>

@@ -1,6 +1,16 @@
 import React from "react";
+import { useContext } from "react";
+import StepperContext from "../../context/StipperContext";
 
 function LessonPrice() {
+  const { userData, setUserData } = useContext(StepperContext);
+  const handleChangeType = (type) => {
+   setUserData({ ...userData,LessonPrice:{...userData.LessonPrice,lessonType:type}});
+ };
+
+ const handleChangePackage = (type) => {
+  setUserData({ ...userData,LessonPrice:{...userData.LessonPrice,package:type}});
+};
   return (
     <div>
       <div className=" mt-10 container ">
@@ -10,10 +20,10 @@ function LessonPrice() {
               what type of lessons do you want ?
             </h1>
             <div className=" flex flex-row gap-4 justify-center">
-              <button className=" hover:bg-perprl hover:text-white transition ease-in-out h-auto w-40 py-4 rounded bg-VD font-semibold text-Darkblue">
+              <button className={`${userData?.LessonPrice?.lessonType === "manual" ? "bg-perprl text-white" : "bg-VD text-Darkblue" } hover:bg-perprl hover:text-white transition ease-in-out h-auto w-40 py-4 rounded  font-semibold ` } onClick={()=>handleChangeType('manual')}>
                 Manual
               </button>
-              <button className=" hover:bg-perprl hover:text-white transition ease-in-out h-auto w-40 py-4 rounded bg-VD font-semibold text-Darkblue">
+              <button className={`${userData?.LessonPrice?.lessonType === "automatic" ? "bg-perprl text-white" : "bg-VD text-Darkblue" } hover:bg-perprl hover:text-white transition ease-in-out h-auto w-40 py-4 rounded  font-semibold ` } onClick={()=>handleChangeType('automatic')}>
                 Automatic
               </button>
             </div>
@@ -39,7 +49,7 @@ function LessonPrice() {
             Chose your Package
           </h1>
           <div className=" flex flex-col gap-4 lg:flex-row items-center justify-around">
-            <div className=" hover:bg-perprl transition ease-in-out   bg-VD rounded-lg px-2 py-6 gap-3 flex flex-col  w-32 ">
+            <div className={`${userData?.LessonPrice?.package === 1 ? "bg-perprl" : "bg-VD" } hover:bg-perprl transition ease-in-out rounded-lg px-2 py-6 gap-3 flex flex-col  w-32`}  onClick={()=>handleChangePackage(1)}>
               <h1 className=" bg-white  text-center p-1 rounded-full w-8">1</h1>
               <div>
                 <p className=" text-white font-medium">2 hours</p>
@@ -47,7 +57,7 @@ function LessonPrice() {
               </div>
             </div>
 
-            <div className=" hover:bg-perprl transition ease-in-out   bg-VD rounded-lg px-2 py-6 gap-3 flex flex-col  w-32 ">
+            <div className={`${userData?.LessonPrice?.package === 2 ? "bg-perprl" : "bg-VD" } hover:bg-perprl transition ease-in-out rounded-lg px-2 py-6 gap-3 flex flex-col  w-32`}  onClick={()=>handleChangePackage(2)}>
               <h1 className=" bg-white  text-center p-1 rounded-full w-8">2</h1>
               <div>
                 <p className=" text-white font-medium">2 hours</p>
@@ -55,7 +65,7 @@ function LessonPrice() {
               </div>
             </div>
 
-            <div className=" hover:bg-perprl transition ease-in-out   bg-VD rounded-lg px-2 py-6 gap-3 flex flex-col  w-32 ">
+            <div className={`${userData?.LessonPrice?.package === 3 ? "bg-perprl" : "bg-VD" } hover:bg-perprl transition ease-in-out rounded-lg px-2 py-6 gap-3 flex flex-col  w-32`}  onClick={()=>handleChangePackage(3)}>
               <h1 className=" bg-white  text-center p-1 rounded-full w-8">3</h1>
               <div>
                 <p className=" text-white font-medium">2 hours</p>

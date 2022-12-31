@@ -1,6 +1,24 @@
 import React from "react";
+import { useContext } from "react";
+import StepperContext from "../../context/StipperContext";
 
 function Credit() {
+  const { userData, setUserData } = useContext(StepperContext);
+  
+  const handleChangeCardNumber = (type) => {
+    setUserData({ ...userData, ...userData?.Credit,cardNumber:type});
+  };
+
+  const handleChangeExpireDate = (type) => {
+    setUserData({ ...userData,Credit:{...userData.Credit,expireDate:type}});
+  };
+
+  const handleChangeCvv = (type) => {
+    setUserData({ ...userData,Credit:{...userData.Credit,cvv:type}});
+  };
+  const handleChangeCardName = (type) => {
+    setUserData({ ...userData,Credit:{...userData.Credit,cardName:type}});
+  };
   return (
     <div>
       <div className=" container mt-4 bg-gray-50 px-4 pt-8 lg:mt-0">
@@ -92,18 +110,21 @@ function Credit() {
               id="card_number"
               className="input-card"
               placeholder="812154554545f"
-              value="812154554545f"
+              value={userData?.Credit?.cardNumber}
+              onChange={(e)=>handleChangeCardNumber(e.target.value)}
             />
           </div>
 
           <div className="card-number-split">
             <div className="card-number">
-              <label htmlFor="card_number-y">Card number</label>
+              <label htmlFor="card_number-y">Expire date</label>
               <input
                 type="text"
                 id="card_number-y"
                 className="input-card"
                 placeholder="MM/YY"
+                value={userData?.Credit?.expireDate}
+                onChange={(e)=>handleChangeExpireDate(e.target.value)}
               />
             </div>
             <div className="card-number">
@@ -112,8 +133,9 @@ function Credit() {
                 type="text"
                 id="cvv"
                 className="input-card"
-                placeholder="812154554545f"
-                value="XXX"
+                placeholder="XXX"
+                value={userData?.Credit?.cvv}
+                onChange={(e)=>handleChangeCvv(e.target.value)}
               />
             </div>
           </div>
@@ -131,6 +153,8 @@ function Credit() {
               name="card-holder"
               className="w-full rounded-md   px-4 py-3 pl-11 text-sm uppercase shadow-sm outline-none "
               placeholder="Your full name here"
+              value={userData?.Credit?.cardName}
+              onChange={(e)=>handleChangeCardName(e.target.value)}
             />
             <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
               <svg
